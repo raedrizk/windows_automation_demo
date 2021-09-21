@@ -50,6 +50,7 @@
   - name: Install the Visual C thingy
     win_package:
       path: https://github.com/petrkle/vim-msi/releases/download/v8.1.55/vim-8.1.55.msi
+      product_id: '{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}'
       arguments: /passive
 
 
