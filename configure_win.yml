@@ -4,6 +4,9 @@
   vars:
     my_service: BITS
     config_path: C:\Temp\config
+    reg_keys:
+    - NoAutoRebootWithLoggedOnUsers
+    - NoAutoUpdate
   tasks:
   - name: Install IIS (Web-Server and Web-Common-Http)
     win_feature:
@@ -34,3 +37,16 @@
     win_copy:
       src: config.txt
       dest: "{{ config_path }}\\importantconfig.txt" 
+
+
+  - name: Add or update registry values
+    win_regedit:
+      path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+      name: "{{ item }}"
+      data: 00000001
+      type: dword
+    loop: "{{ reg_keys }}"
+
+    
+
+
