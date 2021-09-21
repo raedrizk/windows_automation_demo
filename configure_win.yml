@@ -3,6 +3,7 @@
   hosts: all
   vars:
     my_service: BITS
+    config_path: C:\Temp\config
   tasks:
   - name: Install IIS (Web-Server and Web-Common-Http)
     win_feature:
@@ -23,3 +24,13 @@
       name: "{{ my_service }}"
       start_mode: auto
       state: started
+
+  - name: Create directory structure
+    win_file:
+      path: "{{ config_path }}"
+      state: directory
+
+  - name: copy config file
+    win_copy:
+      src: config.txt
+      dest: "{{ config_path }}\\importantconfig.txt" 
