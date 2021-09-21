@@ -47,6 +47,9 @@
       type: dword
     loop: "{{ reg_keys }}"
 
-    
+  - name: Install the Visual C thingy
+    win_package:
+      path: https://github.com/petrkle/vim-msi/releases/download/v8.1.55/vim-8.1.55.msi
+      arguments: /passive
 
 
