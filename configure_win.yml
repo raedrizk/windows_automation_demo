@@ -1,1 +1,17 @@
 ---
+- name: Configure Windows hosts
+  hosts: all
+  tasks:
+  - name: Install IIS (Web-Server and Web-Common-Http)
+    win_feature:
+      name:
+      - Web-Server
+      - Web-Common-Http
+      include_sub_features: true
+      state: present
+
+  - name: Uninstall DHCP
+    win_feature:
+      name:
+      - DHCP
+      state: absent
